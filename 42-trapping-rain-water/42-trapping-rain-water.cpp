@@ -9,9 +9,6 @@ public:
         {
             left[i] = max(left[i-1], height[i]);
         }
-        // for(int x:left) cout<<x<<" ";
-        // cout<<endl;
-        
         
         int right[n];
         right[n-1]=height[n-1];
@@ -19,7 +16,6 @@ public:
         {
             right[i]=max(right[i+1], height[i]);
         }
-        // for(int x:right) cout<<x<<" ";
         
         for(int i=0; i<n-1; i++)
         {
@@ -27,11 +23,5 @@ public:
         }
         
         return res;
-        
-        
-        
-        
-        
-        
     }
 };
