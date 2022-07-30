@@ -8,6 +8,11 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+
+
+// NOTE: 
+// 1) Three pointer(p, q, r) method
+// 2) Iterative Approach
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
@@ -25,7 +30,3 @@ public:
         
     }
 };
-
-// NOTE: 
-// 1) Three pointer(p, q, r) method
-// 2) Iterative Approach
