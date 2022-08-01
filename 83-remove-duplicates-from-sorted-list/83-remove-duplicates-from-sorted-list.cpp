@@ -9,64 +9,57 @@
  * };
  */
 
-// FOR SORTED LINKED LIST
-class Solution {
-public:
-    ListNode* deleteDuplicates(ListNode* head) {
-        ListNode *prev=NULL, *curr=NULL;
-        prev=head;
-        curr=head?head->next:NULL;
-        while(curr)
-        {
-            if(prev->val==curr->val)
-            {
-                ListNode *t;
-                t=curr;
-                prev->next=curr->next;
-                curr=curr->next;
-                delete t;
-            }
-            else 
-            {
-                prev=curr;
-                curr=curr->next;
-            }
-        }
-        return head;
-        
-    }
-};
-
-
-// FOR UNSORTED LINKED LIST========================================
+// FOR SORTED LINKED LIST============================================
 // class Solution {
 // public:
 //     ListNode* deleteDuplicates(ListNode* head) {
-//         ListNode *p=head, *q=NULL, *prev=NULL;
-        
-//         while(p)
+//         ListNode *prev=NULL, *curr=NULL;
+//         prev=head;
+//         curr=head?head->next:NULL;
+//         while(curr)
 //         {
-//             prev=p;
-//             q=p->next;
-//             while(q)
+//             if(prev->val==curr->val)
 //             {
 //                 ListNode *t;
-//                 if(p->val==q->val)
-//                 {
-//                     prev->next=q->next;
-//                     t=q;
-//                     q=q->next;
-//                     delete t;
-//                 }
-//                 else 
-//                 {
-//                     prev=q;
-//                     q=q->next;
-//                 }
+//                 t=curr;
+//                 prev->next=curr->next;
+//                 curr=curr->next;
+//                 delete t;
 //             }
-//             p=p->next;
+//             else 
+//             {
+//                 prev=curr;
+//                 curr=curr->next;
+//             }
 //         }
 //         return head;
         
 //     }
 // };
+
+
+// FOR UNSORTED LINKED LIST========================================
+class Solution {
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
+        unordered_set<int> s;
+        ListNode *prev, *curr;
+        curr=head;
+        while(curr)
+        {
+            if(s.find(curr->val)!=s.end())
+            {
+                prev->next=curr->next;
+                delete(curr);
+            }
+            else
+            {
+                s.insert(curr->val);
+                prev=curr;
+            }
+            curr=prev->next;
+        }
+        return head;
+        
+    }
+};
