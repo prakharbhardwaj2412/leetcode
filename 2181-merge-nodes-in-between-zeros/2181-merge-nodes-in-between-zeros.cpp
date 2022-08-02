@@ -8,34 +8,70 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+// ITERATIVE
+// class Solution {
+// public:
+//     ListNode* mergeNodes(ListNode* head) {
+//         ListNode *curr=head->next, *zero=head;
+//         int sum=0;
+        
+//         while(curr)
+//         {
+//             if(curr->val==0)
+//             {
+//                 curr->val=sum;
+//                 sum=0;
+//                 zero->next=curr;
+//                 zero=curr;
+//                 curr=curr->next;
+//             }
+//             else
+//             {
+//                 sum=sum+curr->val;
+//                 ListNode *t=curr;
+//                 curr=curr->next;
+//                 delete(t);
+//             }
+//         }
+//         zero=head;
+//         head=head->next;
+//         delete(zero);
+//         return head;
+        
+//     }
+// };
+
+// RECURSIVE
 class Solution {
 public:
     ListNode* mergeNodes(ListNode* head) {
-        ListNode *curr=head->next, *zero=head;
+        if(!head->next) return nullptr;
+        ListNode *ptr=head->next;
         int sum=0;
         
-        while(curr)
+        while(ptr->val!=0) 
         {
-            if(curr->val==0)
-            {
-                curr->val=sum;
-                sum=0;
-                zero->next=curr;
-                zero=curr;
-                curr=curr->next;
-            }
-            else
-            {
-                sum=sum+curr->val;
-                ListNode *t=curr;
-                curr=curr->next;
-                delete(t);
-            }
+            sum+=ptr->val; 
+            ptr=ptr->next;
         }
-        zero=head;
-        head=head->next;
-        delete(zero);
-        return head;
+        head->next->val=sum;
+        head->next->next=mergeNodes(ptr);
+        return head->next;
+//         if(!head->next) return nullptr;
+    
+//     //fetch sum from current 0 to next 0
+//     ListNode* ptr= head->next;
+//     int sum=0;
+//     while(ptr->val!=0) sum+= ptr->val, ptr=ptr->next;
+    
+//     //assign sum on the first node between nodes having value 0.
+//     head->next->val= sum;
+    
+//     //call and get the answer and connect the answer to next of head->next
+//     head->next->next= mergeNodes(ptr);
+    
+//     //return head->next..=> new head
+//     return head->next;
         
     }
 };
