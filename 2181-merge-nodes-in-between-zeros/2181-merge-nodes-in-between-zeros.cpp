@@ -32,7 +32,10 @@ public:
                 delete(t);
             }
         }
-        return head->next;
+        zero=head;
+        head=head->next;
+        delete(zero);
+        return head;
         
     }
 };
