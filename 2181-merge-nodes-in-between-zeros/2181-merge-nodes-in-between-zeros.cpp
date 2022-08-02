@@ -18,7 +18,6 @@ public:
         {
             if(curr->val==0)
             {
-                // cout<<"zero"<<curr->val<<" "<<
                 curr->val=sum;
                 sum=0;
                 zero->next=curr;
@@ -29,7 +28,6 @@ public:
             {
                 sum=sum+curr->val;
                 ListNode *t=curr;
-                // cout<<sum<<" "<<curr->val<<endl;
                 curr=curr->next;
                 delete(t);
             }
