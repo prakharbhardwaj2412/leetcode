@@ -24,10 +24,8 @@ public:
         p=t;
         for(int i=a; i<b; i++)
         {
-            cout<<p->val<<" ";
             p=p->next;
         }
-        // cout<<p->val;
         list2_tail->next=p->next;
         return list1;
     }
