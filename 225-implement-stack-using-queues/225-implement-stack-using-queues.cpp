@@ -28,7 +28,7 @@ public:
             q1.push(temp);
             q2.pop();
         }
-        return x;
+        return temp2;
     }
     
     int top() {
