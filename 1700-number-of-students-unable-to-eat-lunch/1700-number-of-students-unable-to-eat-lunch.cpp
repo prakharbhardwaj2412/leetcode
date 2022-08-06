@@ -7,21 +7,21 @@ public:
         {
             stu.push(students[i]);
         }
-        int rot=0, i=0;
+        int rotation=0, sandwich_i=0;
         
-        while(stu.size()!=rot)
+        while(stu.size()!=rotation)
         {
-            if(stu.front()==sandwiches[i])
+            if(stu.front()==sandwiches[sandwich_i])
             {
-                stu.pop(); i++;
-                rot=0;
+                stu.pop(); sandwich_i++;
+                rotation=0;
             }
             else
             {
                 int x=stu.front();
                 stu.pop();
                 stu.push(x);
-                rot++;
+                rotation++;
             }
         }
         
