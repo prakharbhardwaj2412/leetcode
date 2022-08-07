@@ -30,9 +30,10 @@ public:
         if(!root) return 0;
         queue<TreeNode*> q;
         TreeNode* t=root;
-        int height=0;
+        int height=0, count=0;
         q.push(t);
         q.push(NULL);
+        count++;
         while(!q.empty())
         {
             t=q.front();
@@ -47,9 +48,11 @@ public:
             else if(!q.empty())
             {
                 q.push(NULL);
+                count++;
             }
         }
-        return height;
+        cout<<count;
+        return count;
         
     }
 };
