@@ -19,10 +19,7 @@ public:
             t=q.front();
             q.pop();
             if(t->val==target->val) return t;
-            if(t->left)
-            {
-                q.push(t->left);
-            }
+            if(t->left) q.push(t->left);
             if(t->right) q.push(t->right);
             
         }
