@@ -15,8 +15,9 @@ public:
         if(!root) return 0;
         int x=maxDepth(root->left);
         int y=maxDepth(root->right);
-        if(x>y) return x+1;
-        return y+1;
+        // if(x>y) return x+1;
+        // return y+1;
+        return max(x,y)+1;
         
     }
 };
