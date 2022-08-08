@@ -21,24 +21,5 @@ public:
             res.push_back(root->val);
         }
         return res;
-//         ITERATIVE POSTORDER=======================
-        // stack<TreeNode *> st;
-        // TreeNode* t=root;
-        // while(t || !st.empty())
-        // {
-        //     if(t)
-        //     {
-        //         st.push(t);
-        //         t=t->left;
-        //     }
-        //     else
-        //     {
-        //         t=st.top();
-        //         st.pop();
-        //         res.push_back(t->val);
-        //         t=t->right;
-        //     }
-        // }
-        // return res;
     }
 };
