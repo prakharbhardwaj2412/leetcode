@@ -16,7 +16,7 @@ public:
         if(!root) return 0;
         int lheight=height(root->left, ans);
         int rheight=height(root->right, ans);
-        ans=max(ans, lheight+rheight+1);
+        ans=max(ans, lheight+rheight);
         return 1 + max(lheight, rheight);
     }
     int diameterOfBinaryTree(TreeNode* root) {
@@ -24,6 +24,6 @@ public:
             return 0;
         int ans = INT_MIN;
         height(root, ans);
-        return ans-1;
+        return ans;
     }
 };
