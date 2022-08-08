@@ -14,31 +14,31 @@ public:
     vector<int> res;
     vector<int> inorderTraversal(TreeNode* root) {
 //         RECURSIVE PREORDER
-        if(root)
-        {
-            inorderTraversal(root->left);
-            res.push_back(root->val);
-            inorderTraversal(root->right);
-        }
-        return res;
-//         ITERATIVE PREORDER=======================
-        // stack<TreeNode *> st;
-        // TreeNode* t=root;
-        // while(t || !st.empty())
+        // if(root)
         // {
-        //     if(t)
-        //     {
-        //         res.push_back(t->val);
-        //         st.push(t);
-        //         t=t->left;
-        //     }
-        //     else
-        //     {
-        //         t=st.top();
-        //         st.pop();
-        //         t=t->right;
-        //     }
+        //     inorderTraversal(root->left);
+        //     res.push_back(root->val);
+        //     inorderTraversal(root->right);
         // }
         // return res;
+//         ITERATIVE PREORDER=======================
+        stack<TreeNode *> st;
+        TreeNode* t=root;
+        while(t || !st.empty())
+        {
+            if(t)
+            {
+                st.push(t);
+                t=t->left;
+            }
+            else
+            {
+                t=st.top();
+                st.pop();
+                res.push_back(t->val);
+                t=t->right;
+            }
+        }
+        return res;
     }
 };
