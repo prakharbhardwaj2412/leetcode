@@ -13,7 +13,7 @@ class Solution {
 public:
     vector<int> res;
     vector<int> inorderTraversal(TreeNode* root) {
-//         RECURSIVE PREORDER
+//         RECURSIVE INORDER
         // if(root)
         // {
         //     inorderTraversal(root->left);
@@ -21,7 +21,7 @@ public:
         //     inorderTraversal(root->right);
         // }
         // return res;
-//         ITERATIVE PREORDER=======================
+//         ITERATIVE INORDER=======================
         stack<TreeNode *> st;
         TreeNode* t=root;
         while(t || !st.empty())
