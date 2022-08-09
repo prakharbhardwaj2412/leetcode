@@ -13,12 +13,11 @@ class Solution {
 public:
     bool checkSib(TreeNode* left, TreeNode* right)
     {
+        if(left!=NULL ^ right!=NULL) return false;
         if(left && right)
         {
-            // cout<<left->val<<" "<<right->val<<" "<<((left->val==right->val) && checkSib(left->left, right->right) && checkSib(left->right, right->left))<<endl;
             return (left->val==right->val) && checkSib(left->left, right->right) && checkSib(left->right, right->left);
         }
-        if((!left && right) || (left && !right)) return false;
         return true;
     }
     bool isSymmetric(TreeNode* root) {
