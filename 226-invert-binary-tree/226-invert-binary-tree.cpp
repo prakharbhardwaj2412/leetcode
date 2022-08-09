@@ -23,7 +23,8 @@ public:
         {
             inOrder(root->left);
             inOrder(root->right);
-            swapNodes(root);
+            // swapNodes(root);
+            swap(root->left, root->right);
         }
     }
     TreeNode* invertTree(TreeNode* root) {
