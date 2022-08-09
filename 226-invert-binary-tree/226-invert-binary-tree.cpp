@@ -22,11 +22,11 @@ public:
     }
     void inOrder(TreeNode* root)
     {
-        swapNodes(root);
         if(root)
         {
             inOrder(root->left);
-            inOrder(root->right);    
+            inOrder(root->right);
+            swapNodes(root);
         }
     }
     TreeNode* invertTree(TreeNode* root) {
