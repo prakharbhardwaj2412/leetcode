@@ -11,24 +11,13 @@
  */
 class Solution {
 public:
-    void swapNodes(TreeNode* &root)
-    {
-                TreeNode* temp=root->left;
-                root->left=root->right;
-                root->right=temp;
-    }
-    void inOrder(TreeNode* root)
-    {
+    TreeNode* invertTree(TreeNode* root) {
         if(root)
         {
-            inOrder(root->left);
-            inOrder(root->right);
-            // swapNodes(root);
+            invertTree(root->left);
+            invertTree(root->right);
             swap(root->left, root->right);
         }
-    }
-    TreeNode* invertTree(TreeNode* root) {
-        inOrder(root);
         return root;
     }
 };
