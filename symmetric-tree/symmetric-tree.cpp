@@ -13,15 +13,14 @@ class Solution {
 public:
     bool checkSib(TreeNode* left, TreeNode* right)
     {
-        if(left!=NULL ^ right!=NULL) return false;
-        if(left && right)
+        if(!left && !right) return true;
+        if(left && right && left->val==right->val)
         {
-            return (left->val==right->val) && checkSib(left->left, right->right) && checkSib(left->right, right->left);
+            return checkSib(left->left, right->right) && checkSib(left->right, right->left);
         }
-        return true;
+        return false;
     }
     bool isSymmetric(TreeNode* root) {
-        bool ans=checkSib(root->left, root->right);
-        return ans;
+        return checkSib(root->left, root->right);
     }
 };
