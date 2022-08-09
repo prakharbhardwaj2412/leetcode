@@ -21,7 +21,6 @@ public:
         return false;
     }
     bool isSymmetric(TreeNode* root) {
-        bool ans=checkSib(root->left, root->right);
-        return ans;
+        return checkSib(root->left, root->right);
     }
 };
