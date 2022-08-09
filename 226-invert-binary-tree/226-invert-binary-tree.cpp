@@ -13,12 +13,9 @@ class Solution {
 public:
     void swapNodes(TreeNode* &root)
     {
-        if(root)
-        {
                 TreeNode* temp=root->left;
                 root->left=root->right;
                 root->right=temp;
-        }
     }
     void inOrder(TreeNode* root)
     {
@@ -30,9 +27,7 @@ public:
         }
     }
     TreeNode* invertTree(TreeNode* root) {
-        // stack<TreeNode*> st;
         inOrder(root);
-        
         return root;
     }
 };
