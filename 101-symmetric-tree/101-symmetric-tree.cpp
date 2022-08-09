@@ -22,7 +22,6 @@ public:
     }
     bool isSymmetric(TreeNode* root) {
         bool ans=checkSib(root->left, root->right);
-        // cout<<ans;
         return ans;
     }
 };
