@@ -44,7 +44,6 @@ public:
         if(!root) return;
         if(*max_level<level)
         {
-            // cout<<root->val;
             res.push_back(root->val);
             *max_level=level;
         }
