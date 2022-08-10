@@ -28,12 +28,10 @@ public:
         while(!q.empty())
         {
             int n=q.size();
-            cout<<n<<endl;
             t1=q.front();
             q.pop();
             for(int i=0; i<n-1; i++)
             {
-                // cout<<t1->val<<endl;
                 t2=q.front();
                 q.pop();
                 t1->next=t2;
@@ -45,7 +43,6 @@ public:
                 t1=t2;
             }
             if(!q.empty()) q.push(NULL);
-            // t1->next=NULL;
         }
         return root;
     }
