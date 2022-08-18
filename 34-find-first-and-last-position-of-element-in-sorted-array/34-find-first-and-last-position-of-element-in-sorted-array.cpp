@@ -9,7 +9,6 @@ public:
             if(nums[i]!=target) i++;
             if(nums[j]!=target) j--;
         }
-        cout<<i<<" "<<j<<endl;
         if(j<i)
         {
             res.push_back(-1);
