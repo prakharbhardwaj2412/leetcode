@@ -23,14 +23,14 @@ public:
         vector<TreeNode*> arr;
         inOrder(root, arr);
         TreeNode* t; TreeNode* r=arr[0];
-        cout<<arr.size()<<endl;
+        // cout<<arr.size()<<endl;
         for(int i=0; i<arr.size()-1; i++)
         {
             t=arr[i];
-            cout<<i<<" "<<t->val<<endl;
+            // cout<<i<<" "<<t->val<<endl;
             t->left=NULL;
             t->right=arr[i+1];
-            cout<<t->right->val<<endl;
+            // cout<<t->right->val<<endl;
             t->right->left=t->right->right=NULL;
         }
         
