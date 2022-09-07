@@ -12,3 +12,5 @@ public:
         return maxi;
     }
 };
+
+// KADANE'S ALGO
