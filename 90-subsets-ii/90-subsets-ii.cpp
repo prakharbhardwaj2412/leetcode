@@ -6,7 +6,6 @@ public:
         {
             if(i!=ind && arr[i]==arr[i-1]) continue;
             ds.push_back(arr[i]);
-            // ans.push_back(ds);
             returnSubset(i+1, arr, ans, ds);
             ds.pop_back();
         }
