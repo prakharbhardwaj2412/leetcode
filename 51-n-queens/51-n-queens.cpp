@@ -6,13 +6,13 @@ public:
             ans.push_back(block);
             return;
         }
-        for(int i=0; i<n; i++)
+        for(int row=0; row<n; row++)
         {
-            if(isValid(block, i, col, n))
+            if(isValid(block, row, col, n))
             {
-                block[i][col]='Q';
+                block[row][col]='Q';
                 solve(col+1, n, block, ans);
-                block[i][col]='.';
+                block[row][col]='.';
             }
         }
     }
