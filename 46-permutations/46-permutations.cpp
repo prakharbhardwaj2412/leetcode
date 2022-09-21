@@ -1,6 +1,6 @@
 class Solution {
 public:
-    void makePermutation(int ind, vector<int>& nums, vector<int> &ds, vector<vector<int>> &ans, unordered_map<int, int> &mp) {
+    void makePermutation(int ind, vector<int>& nums, vector<int> &ds, vector<vector<int>> &ans, int freq[]) {
         if(ind==nums.size()) 
         {
             ans.push_back(ds);
@@ -8,12 +8,12 @@ public:
         }
         for(int i=0; i<nums.size(); i++)
         {
-            if(mp[nums[i]]==0)
+            if(!freq[i])
             {
-                mp[nums[i]]=1;
+                freq[i]=1;
                 ds.push_back(nums[i]);
-                makePermutation(ind+1, nums, ds, ans, mp);
-                mp[nums[i]]=0;
+                makePermutation(ind+1, nums, ds, ans, freq);
+                freq[i]=0;
                 ds.pop_back();
             }
             
@@ -23,10 +23,10 @@ public:
     }
     vector<vector<int>> permute(vector<int>& nums) {
         vector<vector<int>> ans;
-        unordered_map<int, int> mp;
+        int freq[nums.size()];
+        for(int i=0; i<nums.size(); i++) freq[i]=0;
         vector<int> ds;
-        for(int x: nums) mp[x]=0;
-        makePermutation(0, nums, ds, ans, mp);
+        makePermutation(0, nums, ds, ans, freq);
         return ans;
     }
 };
