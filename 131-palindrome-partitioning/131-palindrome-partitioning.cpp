@@ -1,13 +1,10 @@
 class Solution {
 public:
     bool isPalindrome(string s) {
-        // cout<<s<<" ";
         int i=0, j=s.size()-1;
         while(i<=j) {
-            if(s[i]!=s[j]) return false;
-            i++; j--;
+            if(s[i++]!=s[j--]) return false;
         }
-        // cout<<s<<endl;
         return true;
     }
     
@@ -27,11 +24,6 @@ public:
                 part.push_back(t);
                 returnPartition(i+1, s, part, ans);
                 if(part.size()>0) part.pop_back();
-            }
-            else
-            {
-                // part.clear();
-                // break;
             }
         }
         
