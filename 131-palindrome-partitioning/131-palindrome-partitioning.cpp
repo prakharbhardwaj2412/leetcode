@@ -17,12 +17,11 @@ public:
         for(int i=ind; i<s.size(); i++)
         {
             t+=s[i];
-            cout<<"i="<<i<<" "<<t<<endl;
             if(isPalindrome(t)) 
             {
                 part.push_back(t);
                 returnPartition(i+1, s, part, ans);
-                if(part.size()>0) part.pop_back();
+                part.pop_back();
             }
         }
         
