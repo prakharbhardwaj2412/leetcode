@@ -9,7 +9,6 @@ public:
     }
     
     void returnPartition(int ind, string s, vector<string> &part, vector<vector<string>> &ans) {
-        cout<<ind<<endl;
         if(ind==s.size()) {
             ans.push_back(part);
             return;
