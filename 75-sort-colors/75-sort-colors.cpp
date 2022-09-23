@@ -1,37 +1,30 @@
 class Solution {
 public:
     void sortColors(vector<int>& nums) {
-        int zero=0, one=0, two=0;
-        for(int i=0; i<nums.size(); i++)
+        int low=0, mid=0, high=nums.size()-1;
+        while(mid<=high)
         {
-            if(nums[i]==0) zero++;
-            else if(nums[i]==1) one++;
-            else two++;
-        }
-        for(int i=0; i<nums.size(); i++)
-        {
-            if(zero>0) {
-                nums[i]=0;
-                zero--;
-            }
-            else if(one>0)
+            for(auto x:nums) cout<<x<<" ";
+            cout<<endl;
+            if(nums[mid]==0)
             {
-                nums[i]=1;
-                one--;
+                swap(nums[mid], nums[low]);
+                mid++; low++;
             }
-            else
+            else if(nums[mid]==2)
             {
-                nums[i]=2;
-                two--;
+                swap(nums[mid], nums[high]);
+                // mid++;
+                high--;
             }
+            else if(nums[mid]==1) mid++;
         }
         
-        
     }
-    void swap(int &a, int &b)
-    {
-        int temp=b;
-        b=a;
-        a=temp;
-    }
+    // void swap(int &a, int &b)
+    // {
+    //     int temp=b;
+    //     b=a;
+    //     a=temp;
+    // }
 };
