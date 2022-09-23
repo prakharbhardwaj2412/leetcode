@@ -4,27 +4,19 @@ public:
         int low=0, mid=0, high=nums.size()-1;
         while(mid<=high)
         {
-            for(auto x:nums) cout<<x<<" ";
-            cout<<endl;
-            if(nums[mid]==0)
+            switch(nums[mid])
             {
-                swap(nums[mid], nums[low]);
-                mid++; low++;
+                case 0:
+                    swap(nums[low++], nums[mid++]);
+                    break;
+                case 1:
+                    mid++;
+                    break;
+                case 2:
+                    swap(nums[mid], nums[high--]);
+                    break;
             }
-            else if(nums[mid]==2)
-            {
-                swap(nums[mid], nums[high]);
-                // mid++;
-                high--;
-            }
-            else if(nums[mid]==1) mid++;
         }
         
     }
-    // void swap(int &a, int &b)
-    // {
-    //     int temp=b;
-    //     b=a;
-    //     a=temp;
-    // }
 };
