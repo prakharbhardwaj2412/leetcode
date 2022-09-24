@@ -9,7 +9,6 @@ public:
         int i;
         for(int i=0; i<arr.size(); i++)
         {
-            // cout<<i<<" "<<"["<<temp[0]<<","<<temp[1]<<"]"<<"["<<arr[i][0]<<","<<arr[i][1]<<"]"<<endl;
             if(arr[i][0]<=temp[1])
             {
                 temp[1]=temp[1]<=arr[i][1]?arr[i][1]:temp[1];
