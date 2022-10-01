@@ -1,5 +1,6 @@
 class Solution {
 private:
+//     bredth first search approach========================
     void bfs(int row, int col, vector<vector<bool>> &vis, vector<vector<char>>& grid)
     {
         vis[row][col]=true;
@@ -30,6 +31,7 @@ private:
             }
         }
     }
+//     depth first search================================
     void dfs(int row, int col, vector<vector<bool>> &vis, vector<vector<char>>& grid)
     {
         vis[row][col]=true;
