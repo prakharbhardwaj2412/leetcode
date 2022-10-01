@@ -1,6 +1,6 @@
 class Solution {
 private:
-    void dfs(int node, int vis[], vector<int> adj[])
+    void dfs(int node, vector<int> &vis, vector<int> adj[])
     {
         vis[node]=1;
         for(auto it:adj[node])
@@ -24,10 +24,12 @@ public:
             }
         }
         int count=0;
-        int vis[V];
-        for(int i=0; i<V; i++) vis[i]=0;
+        // int vis[V];
+        vector<int> vis(V, 0);
+        // for(int i=0; i<V; i++) vis[i]=0;
         for(int i=0; i<V; i++)
         {
+            cout<<i<<" "<<vis[i]<<" "<<count<<endl;
             if(!vis[i])
             {
                 dfs(i, vis, adj);
