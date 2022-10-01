@@ -4,15 +4,14 @@ private:
     {
         vis[node]=1;
         for(auto it:adj[node])
-        {
             if(!vis[it])
                 dfs(it, vis, adj);
-        }
     }
 public:
     int findCircleNum(vector<vector<int>>& isConnected) {
         int V=isConnected.size();
         vector<int> adj[V];
+//         to change adjacency matrix to list
         for(int i=0; i<V; i++)
         {
             for(int j=0; j<V; j++)
