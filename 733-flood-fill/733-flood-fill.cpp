@@ -2,7 +2,6 @@ class Solution {
 private:
     void dfs(int row, int col, vector<vector<int>>& image, vector<vector<int>> &ans, int newColor, int prevColor)
     {
-        // vis[row][col]=true;
         ans[row][col]=newColor;
         int n=image.size();
         int m=image[0].size();
@@ -19,10 +18,7 @@ private:
     }
 public:
     vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
-        int n=image.size();
-        int m=image[0].size();
         vector<vector<int>> ans=image;
-        // vector<vector<bool>> vis(n, vector<bool>(m, false));
         dfs(sr, sc, image, ans, color, image[sr][sc]);
         return ans;
     }
