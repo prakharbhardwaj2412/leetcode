@@ -4,7 +4,7 @@ private:
     {
       temp[row][col]=0;
       int n=temp.size();
-        int m=temp[0].size();
+      int m=temp[0].size();
       queue<pair<int, int>> q;
       q.push({row, col});
       int delrow[]={-1, 0, 1, 0};
@@ -27,6 +27,23 @@ private:
 
       }
     }
+    void dfs(int row, int col, vector<vector<int>> &temp)
+    {
+        temp[row][col]=0;
+        int n=temp.size();
+        int m=temp[0].size();
+        int delrow[]={-1, 0, 1, 0};
+        int delcol[]={0, 1, 0, -1};
+        for(int i=0; i<4; i++)
+        {
+            int nrow=row+delrow[i];
+            int ncol=col+delcol[i];
+            if(nrow>=0 && nrow<n && ncol>=0 && ncol<m && temp[nrow][ncol]==1)
+            {
+                dfs(nrow, ncol, temp);
+            }
+        }
+    }
 public:
     int numEnclaves(vector<vector<int>>& grid) {
        vector<vector<int>> temp=grid;
@@ -34,13 +51,13 @@ public:
         int m=grid[0].size();
         for(int i=0; i<n; i++)
         {
-            if(grid[i][0]==1) bfs(i, 0, temp);
-            if(grid[i][m-1]==1) bfs(i, m-1, temp);
+            if(grid[i][0]==1) dfs(i, 0, temp);
+            if(grid[i][m-1]==1) dfs(i, m-1, temp);
         }
         for(int j=0; j<m; j++)
         {
-            if(grid[0][j]==1) bfs(0, j, temp);
-            if(grid[n-1][j]==1) bfs(n-1, j, temp);
+            if(grid[0][j]==1) dfs(0, j, temp);
+            if(grid[n-1][j]==1) dfs(n-1, j, temp);
         }
         int count=0;
         for(int i=0; i<n; i++)
