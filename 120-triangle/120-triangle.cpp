@@ -40,28 +40,15 @@ public:
         int n=triangle.size();
         int m=triangle[n-1].size();
         vector<vector<int>> dp(n, vector<int>(m, -1));
-        dp[0][0]=triangle[0][0];
-        for(int i=1; i<n; i++) {
-            for(int j=0; j<triangle[i].size(); j++) {
-                int left=INT_MAX, right=INT_MAX;
-                if(j==0) {
-                    left=INT_MAX;
-                    right=dp[i-1][j];
-                }
-                else if(j==triangle[i-1].size())
-                {
-                    left=dp[i-1][j-1];
-                    right=INT_MAX;
-                } else {
-                    left=dp[i-1][j-1];
-                    right=dp[i-1][j];
-                }
-                dp[i][j]=min(left, right)+triangle[i][j];
+        for(int j=0; j<m; j++)
+            dp[n-1][j]=triangle[n-1][j];
+        for(int i=n-2; i>=0; i--) {
+            for(int j=i; j>=0; j--) {
+                int down=triangle[i][j] + dp[i+1][j];
+                int diagonal=triangle[i][j] + dp[i+1][j+1];
+                dp[i][j]=min(down, diagonal);
             }
         }
-        int mini=INT_MAX;
-        for(int i=0; i<m; i++)
-            if(mini>dp[n-1][i]) mini=dp[n-1][i];
-        return mini;
+        return dp[0][0];
     }
 };
