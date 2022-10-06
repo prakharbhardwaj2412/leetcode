@@ -3,7 +3,7 @@
 // public:
 //     int f(int row, int col, vector<vector<int>> &triangle)
 //     {
-//         if(row>=triangle.size()) return 0;
+//         if(row==triangle.size()-1) return triangle[row][col];
 //         int left=f(row+1, col, triangle);
 //         int right=f(row+1, col+1, triangle);
 //         return min(left, right)+triangle[row][col];
