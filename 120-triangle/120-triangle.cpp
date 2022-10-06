@@ -57,9 +57,7 @@ public:
                     right=dp[i-1][j];
                 }
                 dp[i][j]=min(left, right)+triangle[i][j];
-                cout<<"("<<left<<" "<<right<<" "<<triangle[i][j]<<" "<<dp[i][j]<<") ";
             }
-            cout<<endl;
         }
         int mini=INT_MAX;
         for(int i=0; i<m; i++)
