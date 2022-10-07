@@ -1,5 +1,6 @@
 class Solution {
 private:
+    // BFS
     bool bfsCheck(int start, vector<vector<int>> &graph, vector<int> &color) {
         color[start]=0;
         queue<int> q;
@@ -15,6 +16,18 @@ private:
             }
         }
         return true;
+    }
+    // DFS
+    bool dfsCheck(int node, int col, vector<vector<int>> &graph, vector<int> &color) {
+        color[node]=col;
+        
+        for(int adjNode:graph[node]) {
+            if(color[adjNode]==-1) {
+                if(dfsCheck(adjNode, !col, graph, color)==false) return false;
+            }
+            else if(color[adjNode]==col) return false;
+        }
+        return true;
         
     }
 public:
@@ -23,7 +36,8 @@ public:
         vector<int> color(V, -1);
         for(int i=0; i<V; i++) {
             if(color[i]==-1)
-                if(bfsCheck(i, graph, color)==false) 
+                // if(bfsCheck(i, graph, color)==false) 
+                if(dfsCheck(i, 0, graph, color)==false)
                     return false;
         }
         return true;
