@@ -1,15 +1,16 @@
 class Solution {
 public:
-    bool detectCycleDFS(int node, vector<int> adjLi[], vector<int> &vis, vector<int> &pathVis)
-    {
+    bool detectCycleDFS(int node, vector<int> adjLi[], vector<int> &vis, vector<int> &pathVis) {
         vis[node]=1;
         pathVis[node]=1;
-        for(auto adjNode:adjLi[node])
-        {
-            if(!vis[adjNode])
-            {
+        // travel for adjacent nodes
+        for(auto adjNode:adjLi[node]) {
+            // when node is not visited
+            if(!vis[adjNode]) {
                 if(detectCycleDFS(adjNode, adjLi, vis, pathVis) == true) return true;
             }
+            // if node has been previously visited
+            // but it has to be visited on the same path
             else if(pathVis[adjNode]) return true;
         }
         pathVis[node]=0;
@@ -22,8 +23,7 @@ public:
         
         vector<int> vis(numCourses, 0);
         vector<int> pathVis(numCourses, 0);
-        for(int i=0; i<numCourses; i++)
-        {
+        for(int i=0; i<numCourses; i++) {
             if(!vis[i])
                 if(detectCycleDFS(i, adjLi, vis, pathVis)) return false;
         }
