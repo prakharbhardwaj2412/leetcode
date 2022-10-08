@@ -26,11 +26,11 @@ public:
             if(!vis[i]) 
                 detectCycleDFS(i, vis, pathVis, check, graph);
         }
-        vector<int> ans;
+        vector<int> safeNodes;
         for(int i=0; i<V; i++) {
-            if(check[i]==1) ans.push_back(i);
+            if(check[i]==1) safeNodes.push_back(i);
         }
-        return ans;
+        return safeNodes;
         
     }
 };
