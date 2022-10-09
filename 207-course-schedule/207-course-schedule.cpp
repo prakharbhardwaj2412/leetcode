@@ -16,6 +16,7 @@ public:
         pathVis[node]=0;
         return false;
     }
+//     BFS algo to detect cycle in directed graph || Khan's Algorithm || Topological Sort
     bool detectCycleBFS(int V, vector<int> adjLi[]) {
         vector<int> indegree(V, 0);
         for(int i=0; i<V; i++) {
@@ -45,13 +46,13 @@ public:
             adjLi[prerequisites[i][0]].push_back(prerequisites[i][1]);
         
 //         DFS function to detect cycle in a graph
-        // vector<int> vis(numCourses, 0);
-        // vector<int> pathVis(numCourses, 0);
-        // for(int i=0; i<numCourses; i++) {
-        //     if(vis[i]==0)
-        //         if(detectCycleDFS(i, adjLi, vis, pathVis)) return false;
-        // }
-        // return true;
+        vector<int> vis(numCourses, 0);
+        vector<int> pathVis(numCourses, 0);
+        for(int i=0; i<numCourses; i++) {
+            if(vis[i]==0)
+                if(detectCycleDFS(i, adjLi, vis, pathVis)) return false;
+        }
+        return true;
 //         BFS function to detect cycle in a graph
         return !detectCycleBFS(numCourses, adjLi);
     }
