@@ -9,12 +9,30 @@ using namespace std;
 
 class Solution{
     private:
-    void topoSortDFS(int node, vector<int> &vis, stack<int> &st, vector<int> adj[]) {
-        vis[node]=1;
-	    for(int it:adj[node]) {
-	        if(!vis[it]) topoSortDFS(it, vis, st, adj);
-	    }
-	    st.push(node);
+    vector<int> topoSortBFS(int V, vector<int> adj[]) {
+        vector<int> vis(V, 0);
+        vector<int> pathVis(V, 0);
+        vector<int> indegree(V, 0);
+        for(int i=0; i<V; i++) {
+            for(auto it:adj[i]) {
+                indegree[it]++;
+            }
+        }
+        queue<int> q;
+        for(int i=0; i<V; i++) {
+            if(indegree[i]==0) q.push(i);
+        }
+        vector<int> topo;
+        while(!q.empty()) {
+            int node=q.front();
+            q.pop();
+            topo.push_back(node);
+            for(auto it:adj[node]) {
+                indegree[it]--;
+                if(indegree[it]==0) q.push(it);
+            }
+        }
+        return topo;
     }
     public:
     string findOrder(string dict[], int N, int K) {
@@ -31,24 +49,12 @@ class Solution{
                 }
             }
         }
-        vector<int> vis(K, 0);
-	    stack<int> st;
-	    for(int i=0; i<K; i++) {
-	        if(!vis[i]) {
-	           topoSortDFS(i, vis, st, adj);
-	        }
-	    }
-	    vector<int> topo;
-	    while(!st.empty()) {
-	        int temp=st.top();
-	        topo.push_back(temp);
-	        st.pop();
-	    }
-	    string s="";
+        vector<int> topo=topoSortBFS(K, adj);
+	    string ans="";
 	    for(int it:topo) {
-	        s+=it+'a';
+	        ans = ans + char(it+'a');
 	    }
-	    return s;
+	    return ans;
         
         
     }
