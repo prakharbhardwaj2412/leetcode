@@ -23,25 +23,19 @@ class Solution {
               if(!vis[it.first]) {
                   vis[it.first]=1;
                   q.push(it.first);
-                //   dist[it.first] = min(dist[it.first], dist[nd]+it.second);
               }
               dist[it.first] = min(dist[it.first], dist[nd]+it.second);
               
           }
       }
-    //   for(int i:vis) cout<<i<<" ";
-    //   cout<<endl;
-    for(int i=1; i<V; i++) if(vis[i]==0) dist[i]=-1;
+      for(int i=1; i<V; i++) if(vis[i]==0) dist[i]=-1;
       return dist;
-      
-      
   }
      vector<int> shortestPath(int N,int M, vector<vector<int>>& edges){
         // code here
         vector<pair<int, int>> adj[N];
         for(int i=0; i<M; i++) 
             adj[edges[i][0]].push_back({edges[i][1], edges[i][2]});
-        
         return shortestPathBFS(N, adj);
     }
 };
