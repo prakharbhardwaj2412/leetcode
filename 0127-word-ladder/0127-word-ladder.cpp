@@ -12,11 +12,12 @@ public:
             q.pop();
             
             if(word == endWord) return step;
-            
+            // N * word.length * 26 * log N
             for(int i=0; i<word.size(); i++) {
                 char original = word[i];
                 for(char ch='a'; ch<='z'; ch++) {
                     word[i]=ch;
+                    // if the word exist in the set
                     if(st.find(word) != st.end()) {
                         st.erase(word);
                         q.push({word, step+1});
