@@ -8,25 +8,56 @@ class Solution
 	public:
 	//Function to find the shortest distance of all the vertices
     //from the source vertex S.
+    
+    // USING PRIORITY QUEUE
+    // vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
+    // {
+    //     // Code here
+    //     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    //     pq.push({0, S});
+        
+    //     vector<int> dist(V, 1e9);
+    //     dist[S]=0;
+        
+    //     while(!pq.empty()) {
+    //         int dis=pq.top().first;
+    //         int node = pq.top().second;
+    //         pq.pop();
+    //         for(auto it:adj[node]) {
+    //             int edgeWeight = it[1];
+    //             int adjNode = it[0];
+    //             if(edgeWeight + dis < dist[adjNode]) {
+    //                 dist[adjNode] = dis + edgeWeight;
+    //                 pq.push({dist[adjNode], adjNode});
+    //             }
+    //         }
+    //     }
+    //     return dist;
+    // }
+    
+    // USING SET
     vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
     {
         // Code here
-        queue<pair<int, int>> q;
-        q.push({0, S});
-        
+        set<pair<int, int>> st;
         vector<int> dist(V, 1e9);
+        
+        st.insert({0, S});
         dist[S]=0;
         
-        while(!q.empty()) {
-            int dis=q.front().first;
-            int node = q.front().second;
-            q.pop();
+        while(!st.empty()) {
+            auto it = *(st.begin());
+            int dis = it.first;
+            int node = it.second;
+            st.erase(it);
             for(auto it:adj[node]) {
-                int edgeWeight = it[1];
+                int edgeW = it[1];
                 int adjNode = it[0];
-                if(edgeWeight + dis < dist[adjNode]) {
-                    dist[adjNode] = dis + edgeWeight;
-                    q.push({dist[adjNode], adjNode});
+                if(edgeW + dis < dist[adjNode]) {
+                    // erase if it existed
+                    if(dist[adjNode] != 1e9) st.erase({dist[adjNode], adjNode});
+                    dist[adjNode] = dis + edgeW;
+                    st.insert({dist[adjNode], adjNode});
                 }
             }
         }
