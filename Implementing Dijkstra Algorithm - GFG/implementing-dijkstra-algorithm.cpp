@@ -18,13 +18,15 @@ class Solution
         dist[S]=0;
         
         while(!q.empty()) {
-            int d=q.front().first;
+            int dis=q.front().first;
             int node = q.front().second;
             q.pop();
             for(auto it:adj[node]) {
-                if(it[1] + d < dist[it[0]]) {
-                    dist[it[0]] = dist[node] + it[1];
-                    q.push({dist[it[0]], it[0]});
+                int edgeWeight = it[1];
+                int adjNode = it[0];
+                if(edgeWeight + dis < dist[adjNode]) {
+                    dist[adjNode] = dis + edgeWeight;
+                    q.push({dist[adjNode], adjNode});
                 }
             }
         }
