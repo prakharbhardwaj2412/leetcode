@@ -43,6 +43,7 @@
 //     }
 // };
 
+// ALL TRAVERSAL IN ONE SHOT
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
