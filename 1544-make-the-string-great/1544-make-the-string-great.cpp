@@ -6,7 +6,7 @@ public:
             s.erase(s.begin() + i + 1);
             s.erase(s.begin() + i);
             check(0, s);
-        } else if(i<s.size()-1) 
+        } else 
             check(i+1, s);
     }
     string makeGood(string s) {
