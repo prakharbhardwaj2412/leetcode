@@ -13,12 +13,10 @@ class Solution {
 public:
     int height(TreeNode* root, int &maxI) {
         if(!root) return 0;
-        int leftsum = height(root->left, maxI);
-        int rightsum = height(root->right, maxI);
-        leftsum = max(0, leftsum);
-        rightsum = max(0, rightsum);
-        maxI=max(maxI, root->val+leftsum+rightsum);
-        return root->val+max(leftsum, rightsum);
+        int left = max(0, height(root->left, maxI));
+        int right = max(0, height(root->right, maxI));
+        maxI=max(maxI, root->val + left + right);
+        return max(left, right) + root->val;
     }
     int maxPathSum(TreeNode* root) {
         int maxi=INT_MIN;
