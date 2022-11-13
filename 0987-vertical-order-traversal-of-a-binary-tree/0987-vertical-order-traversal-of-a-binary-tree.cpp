@@ -17,21 +17,17 @@ public:
         map<int, map<int, multiset<int>>> nodes;
         
         while(!todo.empty()) {
-            // int size = todo.size();
-            // for(int i=0; i<size; i++) {
-                auto node = todo.front().first;
-                int x = todo.front().second.first;
-                int y = todo.front().second.second;
-                todo.pop();
-                nodes[x][y].insert(node->val);
-                if(node->left) {
-                    todo.push({node->left, {x-1, y+1}});
-                }
-                if(node->right) {
-                    todo.push({node->right, {x+1, y+1}});
-                }
-                
-            // }
+            auto node = todo.front().first;
+            int x = todo.front().second.first;
+            int y = todo.front().second.second;
+            todo.pop();
+            nodes[x][y].insert(node->val);
+            if(node->left) {
+                todo.push({node->left, {x-1, y+1}});
+            }
+            if(node->right) {
+                todo.push({node->right, {x+1, y+1}});
+            }
         }
         vector<vector<int>> ans;
         for(auto p : nodes) {
