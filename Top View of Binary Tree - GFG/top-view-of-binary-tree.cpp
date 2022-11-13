@@ -107,16 +107,15 @@ class Solution
         //Your code here
         map<int, int> nodes;
         // {vertical, node}
-        queue<pair<Node*, pair<int, int>>> todo;
-        todo.push({root, {0, 0}});
+        queue<pair<Node*, int>> todo;
+        todo.push({root, 0});
         while(!todo.empty()) {
             Node* node = todo.front().first;
-            int x = todo.front().second.first;
-            int y = todo.front().second.second;
+            int vertical = todo.front().second;
             todo.pop();
-            if(nodes.find(x) == nodes.end()) nodes[x] = node->data;
-            if(node->left) todo.push({node->left, {x-1, y+1}});
-            if(node->right) todo.push({node->right, {x+1, y+1}});
+            if(nodes.find(vertical) == nodes.end()) nodes[vertical] = node->data;
+            if(node->left) todo.push({node->left, vertical-1});
+            if(node->right) todo.push({node->right, vertical+1});
         }
         vector<int> ans;
         for(auto it : nodes) ans.push_back(it.second);
