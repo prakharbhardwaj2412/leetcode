@@ -17,8 +17,8 @@ public:
         map<int, map<int, multiset<int>>> nodes;
         
         while(!todo.empty()) {
-            int size = todo.size();
-            for(int i=0; i<size; i++) {
+            // int size = todo.size();
+            // for(int i=0; i<size; i++) {
                 auto node = todo.front().first;
                 int x = todo.front().second.first;
                 int y = todo.front().second.second;
@@ -31,7 +31,7 @@ public:
                     todo.push({node->right, {x+1, y+1}});
                 }
                 
-            }
+            // }
         }
         vector<vector<int>> ans;
         for(auto p : nodes) {
