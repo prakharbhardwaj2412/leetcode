@@ -3,14 +3,14 @@ public:
     int maxArea(vector<int>& height) {
         int n=height.size();
         int low=0, high=n-1;
-        int maxi=0;
+        int maxWater=0;
         
         while(low<high) {
-            int cap = (high-low)*min(height[low], height[high]);
-            maxi = max(maxi, cap);
+            int water = (high-low)*min(height[low], height[high]);
+            maxWater = max(maxWater, water);
             if(height[low]<height[high]) low++;
             else high--;
         }
-        return maxi;
+        return maxWater;
     }
 };
