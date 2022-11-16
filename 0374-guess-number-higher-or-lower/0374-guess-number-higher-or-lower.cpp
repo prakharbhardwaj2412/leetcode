@@ -13,7 +13,6 @@ public:
         unsigned int low=0, high=n;
         unsigned int mid=(low+high)/2;
         while(guess(mid)!=0) {
-            // cout<<low<<" "<<mid<<" "<<high<<endl;
             if(guess(mid) == 1) {
                 low=mid+1;
                 mid=(low+high)/2;
