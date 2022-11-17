@@ -11,11 +11,12 @@ public:
         else  {
             for(l=n-1; l>k; l--) {
                 if(nums[l] > nums[k]) {
-                    swap(nums[l], nums[k]);
-                    reverse(nums.begin() + k + 1, nums.end());
                     break;
                 }
             }
+            swap(nums[l], nums[k]);
+            reverse(nums.begin() + k + 1, nums.end());
         }
+        
     }
 };
