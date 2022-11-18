@@ -1,5 +1,6 @@
 class Solution {
 public:
+    // Sieve Of Eratosthenes
     int countPrimes(int n) {
         vector<bool> prime(n+1, true);
         
