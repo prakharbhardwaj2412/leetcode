@@ -11,37 +11,29 @@
  */
 class Solution {
 private:
-    void generatePath (TreeNode* root, vector<int> &tmp, vector<vector<int>> &arr) {
-        if(!root) return;
+    void generatePath (TreeNode* root, vector<string> &ans, string str) {
         if(!root->left && !root->right) {
-            tmp.push_back(root->val);
-            arr.push_back(tmp);
-            tmp.pop_back();
+            ans.push_back(str);
             return;
         }
         
-        tmp.push_back(root->val);
-        generatePath(root->left, tmp, arr);
-        generatePath(root->right, tmp, arr);
-        tmp.pop_back();
+        string tmp = "";
+        if(root->left) {
+            tmp = "->" + to_string(root->left->val);
+            generatePath(root->left, ans, str+tmp);
+        }
+        if(root->right) {
+            tmp = "->" + to_string(root->right->val);
+            generatePath(root->right, ans, str+tmp);
+        }
+        
         
     }
 public:
     vector<string> binaryTreePaths(TreeNode* root) {
-        
         vector<string> ans;
-        vector<int> tmp;
-        vector<vector<int>> arr;
-        generatePath(root, tmp, arr);
-        for(int i = 0; i < arr.size(); i++) {
-            string str = "";
-            str += to_string(arr[i][0]);
-            for(int j = 1; j < arr[i].size(); j++) {
-                str += "->";
-                str += to_string(arr[i][j]);
-            }
-            ans.push_back(str);
-        }
+        if(!root) return ans;
+        generatePath(root, ans, to_string(root->val));
         return ans;
     }
 };
