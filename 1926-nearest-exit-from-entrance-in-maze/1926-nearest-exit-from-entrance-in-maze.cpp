@@ -20,9 +20,6 @@ public:
             
             cout<<row<<" "<<col<<" "<<exit<<endl;
             
-            // maze[row][col] = '+';
-            // vis[row][col] = 1;
-            
             for(int i = 0; i < 4; i++) {
                 int nrow = row + delrow[i];
                 int ncol = col + delcol[i];
