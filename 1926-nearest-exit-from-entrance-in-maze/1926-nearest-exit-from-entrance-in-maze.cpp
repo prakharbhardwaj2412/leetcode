@@ -5,8 +5,7 @@ public:
         queue<pair<pair<int, int>, int>> q;
         q.push({{entrance[0], entrance[1]}, 0});
         
-        vector<vector<int>> vis(m, vector<int>(n, 0));
-        vis[entrance[0]][entrance[1]] = 1;
+        // Mark the entrance as visited since its not a exit.
         maze[entrance[0]][entrance[1]] = '+';
         
         int delrow[] = {-1, 0, +1, 0};
@@ -19,7 +18,6 @@ public:
             int col = it.first.second;
             int exit = it.second;
             
-            cout<<row<<" "<<col<<" "<<exit<<endl;
             
             for(int i = 0; i < 4; i++) {
                 int nrow = row + delrow[i];
@@ -27,7 +25,6 @@ public:
                 
                 if(nrow >= 0 && nrow < m && ncol >= 0 && ncol < n && maze[nrow][ncol] != '+') {
                     if(nrow == 0 || nrow == m - 1 || ncol == 0 || ncol == n - 1) return exit + 1;
-                    vis[nrow][ncol] = 1;
                     maze[nrow][ncol] = '+';
                     q.push({{nrow, ncol}, exit + 1});
                 }
