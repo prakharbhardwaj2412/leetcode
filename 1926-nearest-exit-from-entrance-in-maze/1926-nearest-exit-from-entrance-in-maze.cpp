@@ -7,6 +7,7 @@ public:
         
         vector<vector<int>> vis(m, vector<int>(n, 0));
         vis[entrance[0]][entrance[1]] = 1;
+        maze[entrance[0]][entrance[1]] = '+';
         
         int delrow[] = {-1, 0, +1, 0};
         int delcol[] = {0, +1, 0, -1};
@@ -24,9 +25,10 @@ public:
                 int nrow = row + delrow[i];
                 int ncol = col + delcol[i];
                 
-                if(nrow >= 0 && nrow < m && ncol >= 0 && ncol < n && maze[nrow][ncol] != '+' && !vis[nrow][ncol]) {
+                if(nrow >= 0 && nrow < m && ncol >= 0 && ncol < n && maze[nrow][ncol] != '+') {
                     if(nrow == 0 || nrow == m - 1 || ncol == 0 || ncol == n - 1) return exit + 1;
                     vis[nrow][ncol] = 1;
+                    maze[nrow][ncol] = '+';
                     q.push({{nrow, ncol}, exit + 1});
                 }
             }
@@ -35,3 +37,8 @@ public:
         return -1;
     }
 };
+
+// QUES - Why BFS over Depth First Search (DFS) for this problem?
+
+// ANS - The reason is that DFS is not guaranteed to find the shortest path, 
+// as it will explore the matrix as much as possible before moving on to another branch.
