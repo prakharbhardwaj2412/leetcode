@@ -10,10 +10,6 @@
  * };
  */
 class Solution {
-private:
-    // void createNode(TreeNode* node, vector<int>& preorder, vector<int>& inorder) {
-    //     TreeNode *node
-    // }
 public:
     TreeNode* buildTree(vector<int> preorder, vector<int> inorder) {
         if(preorder.size() == 0) return nullptr;
