@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    TreeNode* buildTree(vector<int> &preorder, vector<int> &inorder) {
+    TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
         if(preorder.size() == 0) return nullptr;
         TreeNode *newNode = new TreeNode(preorder[0]);
         int i = 0;
