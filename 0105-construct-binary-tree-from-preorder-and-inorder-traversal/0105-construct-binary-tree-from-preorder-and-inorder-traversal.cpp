@@ -12,32 +12,28 @@
 // O(n) solution
 class Solution {
 public:
+    int preorderIndex;
+    map<int, int> inMap;
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
-        // if(inorder.size() != preorder.size()) return nullptr;
         
+        preorderIndex = 0;
         int preStart = 0, preEnd = preorder.size() - 1;
-        int inStart = 0, inEnd = inorder.size() - 1;
         
-        map<int, int> inMap;
         for(int i = 0; i < inorder.size(); i++) inMap[inorder[i]] = i;
         
-        return buildTreeInPre(inorder, inStart, inEnd,
-                             preorder, preStart, preEnd, inMap);
+        return buildTreeInPre(preorder, preStart, preEnd);
     }
     
-    TreeNode* buildTreeInPre(vector<int>& inorder, int inStart, int inEnd, vector<int>& preorder, int preStart, int preEnd, map<int, int>& inMap) {
+    TreeNode* buildTreeInPre(vector<int>& preorder, int preStart, int preEnd) {
+        // if there are no elements to construct the tree
+        if(preStart > preEnd) return nullptr;
         
-        if(inStart > inEnd || preStart > preEnd) return nullptr;
+        // select the preorder_index element as the root and increment it
+        int rootValue = preorder[preorderIndex++];
+        TreeNode* root = new TreeNode(rootValue); 
         
-        TreeNode* root = new TreeNode(preorder[preStart]); 
-        
-        int elem = inMap[root -> val];
-        int nElem = elem - inStart;
-        
-        root->left = buildTreeInPre(inorder, inStart, elem - 1,
-                             preorder, preStart + 1, preStart + nElem, inMap);
-        root->right = buildTreeInPre(inorder, elem + 1, inEnd,
-                             preorder, preStart + nElem + 1, preEnd, inMap);
+        root->left = buildTreeInPre(preorder, preStart, inMap[rootValue] - 1);
+        root->right = buildTreeInPre(preorder, inMap[rootValue] + 1, preEnd);
         
         return root;
     }
