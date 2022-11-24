@@ -13,28 +13,34 @@
 
 class Solution {
 public:
+    int postIndex;
+    map<int, int> inMap;
     TreeNode* buildTree(vector<int>& inorder, vector<int>& postorder) {
+        // recursively use the left and right portions of inorder to construct the left and right subtrees.
         int inStart = 0, inEnd = inorder.size() - 1;
-        int postStart = 0, postEnd = postorder.size() - 1;
         
-        map<int, int> inMap;
-        for(int i = 0; i <= inEnd; i++) inMap[inorder[i]] = i;
-        return buildTreeInPost(inorder, inStart, inEnd,
-                        postorder, postStart, postEnd, inMap);
+        postIndex = postorder.size() - 1;
+
+        // build a hashmap to store value -> its index relations
+        for(int i = 0; i < inorder.size(); i++) inMap[inorder[i]] = i;
+        
+        return buildTreeInPost(postorder, inStart, inEnd);
     }
     
-    TreeNode* buildTreeInPost(vector<int>& inorder, int is, int ie, vector<int>& postorder, int ps, int pe, map<int, int>& inMap) {
+    TreeNode* buildTreeInPost(vector<int>& postorder, int inStart, int inEnd) {
+        // if there are no elements to construct the tree
+        if(inStart > inEnd) return nullptr;
         
-        if(is > ie || ps > pe) return nullptr;
+        // select the preorder_index element as the root and increment it
+        int rootValue = postorder[postIndex--];
+        TreeNode* root = new TreeNode(rootValue); 
         
-        TreeNode* root = new TreeNode(postorder[pe]);
-        int elem = inMap[postorder[pe]];
-        int xElem = elem - is;
+        // build left and right subtree
+        // excluding inorderIndexMap[rootValue] element because it's the root
+        root->right = buildTreeInPost(postorder, inMap[rootValue] + 1, inEnd);
+        root->left = buildTreeInPost(postorder, inStart, inMap[rootValue] - 1);
         
-        root->left = buildTreeInPost(inorder, is, elem - 1,
-                        postorder, ps, ps + xElem - 1, inMap);
-        root->right = buildTreeInPost(inorder, elem + 1, ie,
-                        postorder, ps + xElem, pe - 1, inMap);
+        
         return root;
     }
     
