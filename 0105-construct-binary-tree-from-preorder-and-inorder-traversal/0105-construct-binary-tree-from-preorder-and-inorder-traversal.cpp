@@ -31,14 +31,13 @@ public:
         
         TreeNode* root = new TreeNode(preorder[preStart]); 
         
-        int inRoot = inMap[preorder[preStart]];
+        int elem = inMap[root -> val];
+        int nElem = elem - inStart;
         
-        int numsLeft = inRoot - inStart;
-        
-        root->left = buildTreeInPre(inorder, inStart, inRoot - 1,
-                             preorder, preStart + 1, preStart + numsLeft, inMap);
-        root->right = buildTreeInPre(inorder, inRoot + 1, inEnd,
-                             preorder, preStart + numsLeft + 1, preEnd, inMap);
+        root->left = buildTreeInPre(inorder, inStart, elem - 1,
+                             preorder, preStart + 1, preStart + nElem, inMap);
+        root->right = buildTreeInPre(inorder, elem + 1, inEnd,
+                             preorder, preStart + nElem + 1, preEnd, inMap);
         
         return root;
     }
