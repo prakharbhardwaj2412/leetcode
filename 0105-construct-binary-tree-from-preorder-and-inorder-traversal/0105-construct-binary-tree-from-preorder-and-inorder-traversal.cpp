@@ -17,16 +17,17 @@ public:
     TreeNode* buildTree(vector<int>& preorder, vector<int>& inorder) {
         
         preorderIndex = 0;
-        int preStart = 0, preEnd = preorder.size() - 1;
+        // recursively use the left and right portions of inorder to construct the left and right subtrees.
+        int inStart = 0, inEnd = inorder.size() - 1;
         // build a hashmap to store value -> its index relations
         for(int i = 0; i < inorder.size(); i++) inMap[inorder[i]] = i;
         
-        return buildTreeInPre(preorder, preStart, preEnd);
+        return buildTreeInPre(preorder, inStart, inEnd);
     }
     
-    TreeNode* buildTreeInPre(vector<int>& preorder, int preStart, int preEnd) {
+    TreeNode* buildTreeInPre(vector<int>& preorder, int inStart, int inEnd) {
         // if there are no elements to construct the tree
-        if(preStart > preEnd) return nullptr;
+        if(inStart > inEnd) return nullptr;
         
         // select the preorder_index element as the root and increment it
         int rootValue = preorder[preorderIndex++];
@@ -34,8 +35,8 @@ public:
         
         // build left and right subtree
         // excluding inorderIndexMap[rootValue] element because it's the root
-        root->left = buildTreeInPre(preorder, preStart, inMap[rootValue] - 1);
-        root->right = buildTreeInPre(preorder, inMap[rootValue] + 1, preEnd);
+        root->left = buildTreeInPre(preorder, inStart, inMap[rootValue] - 1);
+        root->right = buildTreeInPre(preorder, inMap[rootValue] + 1, inEnd);
         
         return root;
     }
