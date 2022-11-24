@@ -18,7 +18,7 @@ public:
         
         preorderIndex = 0;
         int preStart = 0, preEnd = preorder.size() - 1;
-        
+        // build a hashmap to store value -> its index relations
         for(int i = 0; i < inorder.size(); i++) inMap[inorder[i]] = i;
         
         return buildTreeInPre(preorder, preStart, preEnd);
@@ -32,6 +32,8 @@ public:
         int rootValue = preorder[preorderIndex++];
         TreeNode* root = new TreeNode(rootValue); 
         
+        // build left and right subtree
+        // excluding inorderIndexMap[rootValue] element because it's the root
         root->left = buildTreeInPre(preorder, preStart, inMap[rootValue] - 1);
         root->right = buildTreeInPre(preorder, inMap[rootValue] + 1, preEnd);
         
