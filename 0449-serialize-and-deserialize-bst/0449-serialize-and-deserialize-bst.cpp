@@ -27,7 +27,6 @@ public:
             }
             else seri.append("#,");
         }
-        cout<<seri<<endl;
         return seri;
     }
 
