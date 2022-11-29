@@ -22,11 +22,7 @@ public:
     }
     
     int getRandom() {
-        // int a = rand();
         double r = rand() % st.size();
-        // cout<<a<<" "<<r;
-        // return *(st.begin()+r);
-        // return 1;
         auto it = st.begin();
         for (; r != 0; r--) it++;
         return *it;
