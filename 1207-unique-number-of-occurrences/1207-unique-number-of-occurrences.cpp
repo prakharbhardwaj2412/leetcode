@@ -1,16 +1,15 @@
 class Solution {
 public:
     bool uniqueOccurrences(vector<int>& arr) {
-        unordered_map<int, int> mpp;
-        for(int it : arr) mpp[it]++;
+        unordered_map<int, int> freq;
+        for(int it : arr) freq[it]++;
         
-        set<int> st;
+        set<int> freqSet;
         
-        for(auto it : mpp) {
-            if(st.find(it.second) != st.end()) return false;
-            else st.insert(it.second);
+        for(auto [ket, value] : freq) {
+            freqSet.insert(value);
         }
         
-        return true;
+        return freq.size() == freqSet.size();
     }
 };
