@@ -15,12 +15,11 @@ public:
         TreeNode* node = root, *prev = root;
         
         while(node) {
+            prev = node;
             if(node->val < val) {
-                prev = node;
                 node = node->right;
             }
             else {
-                prev = node;
                 node = node->left;
             }
         }
