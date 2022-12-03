@@ -1,20 +1,18 @@
 class Solution {
 public:
     string frequencySort(string s) {
-        map<char, int> mpp;
+        unordered_map<char, int> freq;
+        vector<string> bucket(s.size() + 1, "");
         
-        for(char c : s) mpp[c]++;
+        for(char c : s) freq[c]++;
         
-        
-        vector<pair<int, char>> arr;
-        
-        for(auto it : mpp) arr.push_back({it.second, it.first});
-        sort(arr.begin(), arr.end());
+        for(auto it : freq) {
+            bucket[it.second].append(it.second, it.first);
+        }
         
         string ans = "";
-        
-        for(int i = arr.size()-1; i >= 0; i--) {
-            for(int j = 0; j < arr[i].first; j++) ans += arr[i].second;
+        for(int i = s.size(); i>=0; i--) {
+            if(bucket[i].size() > 0) ans+=bucket[i];
         }
         return ans;
     }
