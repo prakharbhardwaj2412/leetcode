@@ -14,9 +14,8 @@ public:
         TreeNode* curr = root;
         
         while(curr) {
-            cout<<curr->val<<" "<<p->val<<" "<<q->val<<endl;
             if ((curr->val >= p->val && curr->val <= q->val) || (curr->val <= p->val && curr->val >= q->val))
-                return curr;
+                break;
             
             if(curr->val > p->val && curr->val > q->val) curr = curr->left;
             
