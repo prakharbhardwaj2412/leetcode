@@ -11,26 +11,25 @@
  */
 class Solution {
 public:
-    void traversal(TreeNode* root, set<int> &st, unordered_map<int, int> &freq) {
+    void inorder(TreeNode* root, int &currFreq, int &maxFreq, int &curr, vector<int> &ans) {
         if(!root) return;
-        traversal(root->left, st, freq);
-        freq[root->val]++;
-        st.insert(freq[root->val]);
-        traversal(root->right, st, freq);
+        inorder(root->left, currFreq, maxFreq, curr, ans);
+        if(curr == root->val) currFreq++;
+        else currFreq = 1;
+            
+        if(currFreq > maxFreq) {
+                ans.clear();
+                maxFreq = currFreq;
+                ans.push_back(root->val);
+        }
+        else if(currFreq == maxFreq) ans.push_back(root->val);
+        curr = root->val;
+        inorder(root->right, currFreq, maxFreq, curr, ans);
     }
     vector<int> findMode(TreeNode* root) {
-        unordered_map<int, int> freq;
-        set<int> st;
-        traversal(root, st, freq);
-        
-        auto m = st.end();
-        
+        int currFreq = 0, maxFreq = 0, curr = INT_MIN;
         vector<int> ans;
-        
-        for(auto it : freq) {
-            if(it.second == *m) ans.push_back(it.first);
-        }
-        
+        inorder(root, currFreq, maxFreq, curr, ans);
         return ans;
     }
 };
