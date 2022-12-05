@@ -37,9 +37,9 @@ public:
         if(preorder.size() == 0) return NULL;
         
         
-        TreeNode* root = new TreeNode(preorder[0]);
+        TreeNode* root = NULL;
         
-        for(int i = 1; i < preorder.size(); i++) {
+        for(int i = 0; i < preorder.size(); i++) {
             root = insertIntoBST(root, preorder[i]);
         }
         
