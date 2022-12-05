@@ -14,17 +14,23 @@ public:
     TreeNode* insertIntoBST(TreeNode* root, int val) {
         if(!root) return new TreeNode(val);
         
-        TreeNode *node = root, *pre = root;
+        TreeNode *curr = root;
         
-        while(node) {
-            pre = node;
-            if(node->val < val) node = node->right;
-            else if(node->val > val) node = node->left;
+        while(true) {
+            if(curr->val <= val) {
+                if(curr->right) curr = curr->right;
+                else {
+                    curr->right = new TreeNode(val);
+                    break;
+                }
+            } else {
+                if(curr->left) curr = curr->left;
+                else {
+                    curr->left = new TreeNode(val);
+                    break;
+                }
+            }
         }
-        
-        if(pre->val > val) pre->left = new TreeNode(val);
-        else pre->right = new TreeNode(val);
-        
         return root;
     }
     TreeNode* bstFromPreorder(vector<int>& preorder) {
