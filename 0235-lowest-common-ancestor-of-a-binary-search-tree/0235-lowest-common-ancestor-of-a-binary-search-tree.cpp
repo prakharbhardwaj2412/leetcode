@@ -14,12 +14,12 @@ public:
         TreeNode* curr = root;
         
         while(curr) {
-            if ((curr->val >= p->val && curr->val <= q->val) || (curr->val <= p->val && curr->val >= q->val))
-                break;
-            
             if(curr->val > p->val && curr->val > q->val) curr = curr->left;
             
             else if(curr->val < p->val && curr->val < q->val) curr = curr->right;
+            
+            else
+                break;
         }
         
         return curr;
