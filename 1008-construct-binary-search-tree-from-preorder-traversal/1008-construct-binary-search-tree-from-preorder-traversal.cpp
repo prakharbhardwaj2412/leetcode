@@ -34,7 +34,6 @@ public:
         TreeNode* root = NULL;
         
         for(int i = 0; i < preorder.size(); i++) {
-            cout<<"============="<<preorder[i]<<"==================="<<endl;
             root = insertIntoBST(root, preorder[i]);
         }
         
