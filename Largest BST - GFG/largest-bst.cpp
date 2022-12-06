@@ -100,34 +100,32 @@ struct Node {
 };*/
 
 class Solution{
-    private:
-    bool isValidBST(Node* root, long int minVal, long int maxVal, int &tmp) {
-        if(!root) return true;
-        tmp++;
-        if(root->data <= minVal || root->data >= maxVal) return false;
-        
-        return isValidBST(root->left, minVal, root->data, tmp) && isValidBST(root->right, root->data, maxVal, tmp);
-    }
-    bool isValidBST(Node* root, int &tmp) {
-        return isValidBST(root, LONG_MIN, LONG_MAX, tmp);
-    }
     public:
     /*You are required to complete this method */
     // Return the size of the largest sub-tree which is also a BST
-    void inorder(Node *root, int &ans) {
-        if(!root) return;
-        inorder(root->left, ans);
-        int tmp = 0;
-        if(isValidBST(root, tmp)) ans = max(ans, tmp);
+    vector<int> postorder(Node *root) {
+        if(!root) return {0, INT_MIN, INT_MAX};
         
-        inorder(root->right, ans);
+        vector<int> left = postorder(root->left);
+        vector<int> right = postorder(root->right);
+        
+        int maxNode = left[1];
+        int minNode = right[2];
+        
+        if(root->data > maxNode && root->data < minNode) {
+            maxNode = max(root->data, max(left[1], right[1]));
+            minNode = min(root->data, min(left[2], right[2]));
+            return {1 + left[0] + right[0], maxNode, minNode};
+        }
+        
+        return {max(left[0], right[0]), INT_MAX, INT_MIN};
     }
     int largestBst(Node *root)
     {
-    	//Your code
-    	int ans = 0;
-    	inorder(root, ans);
-    	return ans;
+    	//Your code here
+    	vector<int> ans = postorder(root);
+    	
+    	return ans[0];
     }
 };
 
