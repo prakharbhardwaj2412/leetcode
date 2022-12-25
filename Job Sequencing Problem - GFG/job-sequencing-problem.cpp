@@ -59,9 +59,7 @@ class Solution
                 }
             }
         }
-        // ans[0]--;
         return {countJobs, jobProfit};
-        // return ans;
         
         
     } 
